@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>检测历史 - PCBA智能检测系统</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <div class="container-fluid">
+        <header class="text-center py-4 bg-primary text-white">
+            <h1>PCBA智能缺陷检测系统</h1>
+            <p class="mb-0">检测历史记录</p>
+        </header>
+
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="/">首页</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="/">检测</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" href="/history">历史记录</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <main class="container mt-4">
+            <!-- 统计信息 -->
+            <div class="row mb-4">
+                <div class="col-md-4">
+                    <div class="card text-center">
+                        <div class="card-body">
+                            <h5 class="card-title">总记录数</h5>
+                            <h2 id="totalRecords" class="text-primary">-</h2>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card text-center">
+                        <div class="card-body">
+                            <h5 class="card-title">平均置信度</h5>
+                            <h2 id="avgConfidence" class="text-success">-</h2>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card text-center">
+                        <div class="card-body">
+                            <h5 class="card-title">缺陷类型数</h5>
+                            <h2 id="defectTypes" class="text-info">-</h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 筛选区域 -->
+            <div class="card mb-4">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <label for="filterDefectName" class="form-label">缺陷名称</label>
+                            <input type="text" class="form-control" id="filterDefectName" placeholder="输入缺陷名称">
+                        </div>
+                        <div class="col-md-4">
+                            <label for="filterDefectCode" class="form-label">缺陷编号</label>
+                            <input type="text" class="form-control" id="filterDefectCode" placeholder="输入缺陷编号">
+                        </div>
+                        <div class="col-md-4 d-flex align-items-end">
+                            <button class="btn btn-primary me-2" onclick="loadRecords()">搜索</button>
+                            <button class="btn btn-secondary" onclick="resetFilters()">重置</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 记录列表 -->
+            <div class="card">
+                <div class="card-header d-flex justify-content-between align-items-center">
+                    <h5 class="mb-0">检测记录</h5>
+                    <button class="btn btn-sm btn-primary" onclick="loadRecords()">刷新</button>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>缺陷名称</th>
+                                    <th>缺陷编号</th>
+                                    <th>置信度</th>
+                                    <th>坐标</th>
+                                    <th>检测时间</th>
+                                    <th>操作</th>
+                                </tr>
+                            </thead>
+                            <tbody id="recordsTableBody">
+                                <tr>
+                                    <td colspan="7" class="text-center">加载中...</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- 分页 -->
+                    <nav>
+                        <ul class="pagination justify-content-center" id="pagination">
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </main>
+
+        <footer class="text-center py-3 bg-light mt-5">
+            <p class="mb-0 text-muted">PCBA智能检测系统 © 2024</p>
+        </footer>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/js/api.js"></script>
+    <script src="/js/history.js"></script>
+</body>
+</html>
+
