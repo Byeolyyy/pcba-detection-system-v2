@@ -1,5 +1,43 @@
-venv/
-dist/
-build/
+﻿# Python
 __pycache__/
+*.py[cod]
+*$py.class
+.Python
+
+# Virtual environments
+.venv/
+venv/
+env/
+ENV/
+
+# Build / packaging
+build/
+dist/
+*.egg-info/
 *.spec
+pip-wheel-metadata/
+
+# Runtime / logs
+*.log
+*.pid
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+
+# Testing / cache
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# Local data (keep placeholders)
+database/*.db
+uploads/images/*
+uploads/results/*
+!uploads/.gitkeep
+!uploads/images/.gitkeep
+!uploads/results/.gitkeep
